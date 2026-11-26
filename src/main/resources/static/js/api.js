@@ -1,5 +1,14 @@
 'use strict';
 
+/* URL base da API: local em dev, Render em produção */
+const API_BASE = (function () {
+  const host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') {
+    return '';
+  }
+  return 'https://library-management-az9g.onrender.com';
+})();
+
 /* Armazenamento da sessão (token JWT + dados do usuário) */
 const Session = {
   KEY: 'library.session',
@@ -47,7 +56,7 @@ const Api = {
 
     let response;
     try {
-      response = await fetch(path, {
+      response = await fetch(API_BASE + path, {
         method,
         headers,
         body: body !== undefined ? JSON.stringify(body) : undefined
