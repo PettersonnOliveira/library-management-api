@@ -3,7 +3,7 @@ package com.portfolio.Library.Management.DTO;
 import jakarta.validation.constraints.NotNull;
 
 public record LoanRequestDTO(
-        @NotNull Long userId,
+        Long userId,
         @NotNull Long bookId
 ) {
 }

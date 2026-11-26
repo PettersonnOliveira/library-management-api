@@ -1,7 +1,7 @@
 package com.portfolio.Library.Management.Entities;
 
-import com.portfolio.Library.Management.DTO.UserRequestDTO;
 import jakarta.persistence.*;
+import com.portfolio.Library.Management.infra.security.Role;
 
 import java.util.Objects;
 
@@ -12,13 +12,20 @@ public class User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(nullable = false, unique = true)
     private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Role role = Role.USER;
 
     public User() {
     }
-    public User(UserRequestDTO dadosEntrada){
-        this.name = dadosEntrada.name();
-        this.email = dadosEntrada.email();
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -44,6 +51,10 @@ public class User{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() { return password; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
 
     @Override
     public boolean equals(Object o) {

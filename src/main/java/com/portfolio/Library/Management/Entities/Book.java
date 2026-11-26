@@ -1,7 +1,6 @@
 package com.portfolio.Library.Management.Entities;
 
 import com.portfolio.Library.Management.DTO.BookRequestDTO;
-import com.portfolio.Library.Management.DTO.BookUpdateDTO;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -19,12 +18,7 @@ public class Book {
     public Book(BookRequestDTO dadosEntrada){
         this.title = dadosEntrada.title();
         this.author = dadosEntrada.author();
-        this.available = true; // Assuming new books are available by default
-    }
-    public Book(BookUpdateDTO dadosUpdate){
-        this.title = dadosUpdate.title();
-        this.author = dadosUpdate.author();
-        this.available = dadosUpdate.available();
+        this.available = true; // Livros novos entram disponíveis por padrão
     }
 
     public Book() {
